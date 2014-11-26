@@ -1,0 +1,5 @@
+{% extends 'twiml.xml' %}
+{% block body %}
+<Say>What's black and white and eats like a horse?</Say>
+<Say voice="man">a ZEBRA</Say>
+{% endblock %}

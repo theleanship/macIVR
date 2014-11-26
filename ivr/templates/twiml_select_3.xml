@@ -1,0 +1,6 @@
+{% extends 'twiml.xml' %}
+{% block body %}
+<Say>Thanks for phoning, please leave a message and our customer service team will call you back soon. Leave your message after the beep and hit any key to end your message.</Say>
+<Record action="{{voicemail_callback}}" method="POST" />
+<Say>Sorry, we were not able to store your recording.</Say>
+{% endblock %}

@@ -1,0 +1,5 @@
+{% extends 'twiml.xml' %}
+{% block body %}
+<Say>Thanks for your message, goodbye.</Say>
+<Hangup />
+{% endblock %}

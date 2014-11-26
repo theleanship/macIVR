@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<Response> 
+{% block body %}
+	<Gather action="{{gather_callback}}" numDigits="1">
+		<Say>You have reached the coolest company, in the world.</Say>
+		<Say>To hear a joke, press 1.</Say>
+		<Say>for something else, press 2.</Say>
+		<Say>To speak to our customer service team, press 3.</Say>
+	</Gather>
+	<Say>Sorry, I didn't get your response.</Say>
+{% endblock %}
+<Pause length="3" />
+<Redirect>{{restart_url}}</Redirect>
+</Response>
