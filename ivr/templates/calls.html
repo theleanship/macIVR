@@ -1,15 +1,29 @@
-<!doctype html>
-<html>
-<head>
-	<title>Call List</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-</head>
-<body>
+{% extends 'container.html' %}
+{% block content %}
+	<h3>Recent Calls</h3>
+	<p>Shown below are calls you have received, latest first.</p>
 
-{% for call in calls %}
-	{{ call.fromNumber }}
-{% endfor %}
-</body>
-</html>
+	<div class="row">
+    	<div class="col-md-3">From</div>
+    	<div class="col-md-3">Duration</div>
+    	<div class="col-md-3">Voicemail</div>
+    	<div class="col-md-3">Read</div>
+    </div>
+	{% for call in calls %}
+		{{ call.fromNumber }}
+		<div class="row">
+	    	<div class="col-md-3">{{ call.fromNumber }}</div>
+	    	<div class="col-md-3">{{ call.format_duration() }}</div>
+	    	<div class="col-md-3">
+	    	{% if call.recordingUrl %}
+	    	<a href="{{ url_for('listen_voicemail', call_id=call.callSid) }}">Play ({{ call.format_recording_duraton() }})</a>
+	    	{% endif %}
+	    	</div>
+	    	<div class="col-md-3">
+	    		{% if call.recordingUrl %}
+	    			{% if call.listened %}Listened{% else %}NEW{% endif %}
+	    		{% endif %}
+	    	</div>
+	    </div>
+	{% endfor %}
+{% endblock %}

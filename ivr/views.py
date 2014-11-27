@@ -2,7 +2,7 @@ from ivr import app, db
 from ivr import settings
 from ivr.decorators import requires_auth
 from ivr.models import Call
-from flask import render_template, abort, request, make_response, url_for
+from flask import render_template, abort, request, make_response, redirect
 from flask.views import MethodView
 from jinja2.exceptions import TemplateNotFound
 
@@ -31,13 +31,28 @@ def updateCall(args):
 
     return call
 
+@app.route('/listen/<call_id>/', methods=['GET'])
+@requires_auth
+def listen_voicemail(call_id):
+    """ Simple list of recent calls """
+
+    try:
+        call = Call.objects.get(callSid=call_id)
+        call.listened = True
+        call.save()
+
+    except Call.DoesNotExist():
+        abort(404)
+
+    return redirect(call.recordingUrl, code=302)
+
 
 @app.route('/calls/list/', methods=['GET'])
 @requires_auth
 def call_list():
     """ Simple list of recent calls """
 
-    callList = Call.objects.all()
+    callList = Call.objects.order_by('-created_at')
 
     return render_template('calls.html', calls=callList)
 
