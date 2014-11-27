@@ -4,6 +4,7 @@ from ivr import settings
 
 app = Flask(__name__)
 app.config["MONGODB_SETTINGS"] = settings.MONGODB_SETTINGS
+app.config["SERVER_NAME"] = settings.SERVER_NAME
 
 db = MongoEngine(app)
 

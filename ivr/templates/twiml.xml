@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>  
 <Response> 
 {% block body %}
-	<Gather action="{{gather_callback}}" numDigits="1">
+	<Gather action="{{ url_for('selection', _external=True) }}" numDigits="1">
 		<Say>You have reached the coolest company, in the world.</Say>
 		<Say>To hear a joke, press 1.</Say>
 		<Say>for something else, press 2.</Say>
@@ -10,5 +10,5 @@
 	<Say>Sorry, I didn't get your response.</Say>
 {% endblock %}
 <Pause length="3" />
-<Redirect>{{restart_url}}</Redirect>
+<Redirect>{{ url_for('incoming', _external=True) }}</Redirect>
 </Response>
