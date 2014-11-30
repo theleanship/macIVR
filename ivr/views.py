@@ -51,7 +51,6 @@ def listen_voicemail(call_id):
 @requires_auth
 def call_list():
     """ Simple list of recent calls """
-
     callList = Call.objects.order_by('-created_at')
 
     return render_template('calls.html', calls=callList)

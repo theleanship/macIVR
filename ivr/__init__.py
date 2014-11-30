@@ -3,7 +3,7 @@ from flask.ext.mongoengine import MongoEngine
 from ivr import settings
 
 app = Flask(__name__)
-app.config["MONGODB_SETTINGS"] = settings.MONGODB_SETTINGS
+app.config["MONGODB_SETTINGS"] = {'db': settings.MONGODB_DBNAME, 'host': settings.MONGODB_HOST}
 app.config["SERVER_NAME"] = settings.SERVER_NAME
 
 db = MongoEngine(app)

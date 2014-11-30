@@ -10,7 +10,9 @@ Environment Variables
 - SERVER_NAME - url to where your app is hosted
 - TWILIO_ACCOUNT_SID - twilio details
 - TWILIO_AUTH_TOKEN - twilio details
-- MONGODB_SETTINGS - a dict containing your mongo config (TBD, probably can't store a dict as an env var!)
+- MONGODB_DBNAME - the name of the database you will be using
+- MONGODB_HOST - host uri for the database, convienant for heroku apps
+- FRONTEND_USERNAME - username for simple http auth that blocks the call list
 
 Set up Twilio
 -------------
@@ -30,5 +32,8 @@ Setting up the IVR
 
 `twiml_error.xml` a simple script to run on selection errors, where a digit is chosen where there is no option for that digit.
 
+View calls
+----------
 
+Visit `<your server>/calls/list/` to check calls and voicemails. The default login is macivr / Pa55w0rd
 
